@@ -163,9 +163,11 @@ function drawTime(ctx, radius) {
   const minute = now.getMinutes();
   const second = now.getSeconds();
 
+  // Konversi ke jam analog 12 jam
   hour = hour % 12;
-  hour = hour ? hour : 12;
+  hour = hour ? hour : 12; // jam 0 -> 12
 
+  // Sudut
   const hourAngle = (Math.PI / 6) * (hour + minute / 60);
   const minuteAngle = (Math.PI / 30) * minute;
   const secondAngle = (Math.PI / 30) * second;
@@ -184,12 +186,15 @@ function drawHand(ctx, pos, length, width, color) {
   ctx.shadowColor = color;
   ctx.shadowBlur = 5;
 
-  ctx.rotate(pos - Math.PI / 2);
+  ctx.rotate(pos);
   ctx.moveTo(0, 0);
   ctx.lineTo(0, -length);
   ctx.stroke();
+
   ctx.restore();
 }
+
+
 
 function drawActivities(ctx, radius) {
   const now = new Date();
